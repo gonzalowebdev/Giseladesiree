@@ -7,7 +7,7 @@
     <!-- SEO Meta Tags -->
     <title>Odontóloga Gisela Desiree | Reservá tu turno online en Córdoba</title>
     <meta name="description" content="Consultorio odontológico de Gisela Desiree en Córdoba. Reservá tu turno online de forma rápida y segura, con confirmación inmediata.">
-    <meta name="keywords" content="odontología, dentista, Córdoba, Gisela Desiree, turnos online, reserva, blanqueamiento, ortodoncia, estética dental">
+    <meta name="keywords" content="odontología, dentista, Córdoba, Gisela Desiree, turnos online, reserva, blanqueamiento, ortodoncia, cirugía, prótesis">
     
     <!-- Open Graph -->
     <meta property="og:title" content="Odontóloga Gisela Desiree | Reservá tu turno online">
@@ -160,35 +160,45 @@
         /* Services */
         .services { padding:var(--section-padding) 0; background:var(--white); }
         .services-header { text-align:center; margin-bottom:4rem; }
-        .services-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:2rem; }
-        .service-card { background:var(--bg-light); border-radius:var(--radius-md); padding:2.5rem 2rem; transition:all var(--transition-smooth); cursor:pointer; border:1px solid transparent; position:relative; overflow:hidden; }
-        .service-card::before { content:''; position:absolute; top:0; left:0; width:100%; height:4px; background:var(--primary-teal); transform:scaleX(0); transform-origin:left; transition:transform var(--transition-smooth); }
-        .service-card:hover { transform:translateY(-8px); box-shadow:var(--shadow-lg); border-color:rgba(91,140,140,0.15); background:var(--white); }
-        .service-card:hover::before { transform:scaleX(1); }
-        .service-icon {
-            width:60px;
-            height:60px;
-            background:var(--bg-teal-light);
-            border-radius:50%;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            margin-bottom:1.5rem;
+        .services-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:2rem; }
+        .service-card {
+            background:var(--bg-light);
+            border-radius:var(--radius-md);
+            overflow:hidden;
             transition:all var(--transition-smooth);
-            color:var(--primary-teal);
+            border:1px solid transparent;
+            position:relative;
+            display:flex;
+            flex-direction:column;
         }
-        .service-card:hover .service-icon {
-            background:var(--primary-teal);
-            color:white;
-            transform:scale(1.1);
+        .service-card:hover {
+            transform:translateY(-8px);
+            box-shadow:var(--shadow-lg);
+            border-color:rgba(91,140,140,0.15);
+            background:var(--white);
         }
-        .service-icon svg {
-            width:30px;
-            height:30px;
+        .service-img {
+            width:100%;
+            height:200px;
+            object-fit:cover;
             display:block;
         }
-        .service-card h3 { margin-bottom:0.8rem; }
-        .service-card p { color:var(--text-medium); font-size:0.95rem; line-height:1.7; }
+        .service-body {
+            padding:1.5rem;
+            flex:1;
+            display:flex;
+            flex-direction:column;
+        }
+        .service-body h3 {
+            margin-bottom:0.5rem;
+            color:var(--text-dark);
+        }
+        .service-body p {
+            color:var(--text-medium);
+            font-size:0.95rem;
+            line-height:1.7;
+            flex:1;
+        }
 
         /* About */
         .about { padding:var(--section-padding) 0; background:var(--bg-light); }
@@ -357,6 +367,9 @@
             .timeline-year::before {
                 left: -1.95rem;
             }
+            .services-grid {
+                grid-template-columns:1fr;
+            }
         }
         @media (max-width: 500px) {
             .footer-grid { grid-template-columns:1fr; text-align:center; }
@@ -417,6 +430,7 @@
             </div>
         </section>
 
+        <!-- NUEVA SECCIÓN DE SERVICIOS CON IMÁGENES -->
         <section class="services" id="servicios">
             <div class="container">
                 <div class="services-header reveal">
@@ -424,66 +438,58 @@
                     <h2>Tratamientos de excelencia</h2>
                 </div>
                 <div class="services-grid">
+                    <!-- Tarjeta 1: Odontología General -->
                     <div class="service-card reveal reveal-delay-1">
-                        <div class="service-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M12 2C6.5 2 2 6.5 2 12c0 5.5 4.5 10 10 10s10-4.5 10-10C22 6.5 17.5 2 12 2z"/>
-                                <path d="M9 12l2 2 4-4"/>
-                                <circle cx="12" cy="12" r="3"/>
-                            </svg>
+                        <img src="img-odontologia-general.jpg" alt="Odontología General" class="service-img" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%23E8F0F0%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%235B8C8C%22 font-family=%22sans-serif%22 font-size=%2216%22%3EOdontología General%3C/text%3E%3C/svg%3E'">
+                        <div class="service-body">
+                            <h3>Odontología General</h3>
+                            <p>Controles periódicos, limpiezas profesionales, restauraciones estéticas y tratamientos preventivos para mantener tu salud bucal en óptimas condiciones.</p>
                         </div>
-                        <h3>Odontología General</h3>
-                        <p>Controles, limpiezas y prevención.</p>
                     </div>
+
+                    <!-- Tarjeta 2: Ortodoncia -->
                     <div class="service-card reveal reveal-delay-2">
-                        <div class="service-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-                            </svg>
+                        <img src="img-ortodoncia.jpg" alt="Ortodoncia" class="service-img" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%23E8F0F0%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%235B8C8C%22 font-family=%22sans-serif%22 font-size=%2216%22%3EOrtodoncia%3C/text%3E%3C/svg%3E'">
+                        <div class="service-body">
+                            <h3>Ortodoncia</h3>
+                            <p>Brackets convencionales y de autoligado, tanto estéticos como metálicos. Corregimos la posición de tus dientes de manera eficaz y duradera.</p>
                         </div>
-                        <h3>Estética Dental</h3>
-                        <p>Blanqueamiento y diseño de sonrisa.</p>
                     </div>
+
+                    <!-- Tarjeta 3: Blanqueamiento -->
                     <div class="service-card reveal reveal-delay-3">
-                        <div class="service-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M6 4v16M18 4v16"/>
-                                <path d="M6 8h12M6 16h12"/>
-                            </svg>
+                        <img src="img-blanqueamiento.jpg" alt="Blanqueamiento" class="service-img" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%23E8F0F0%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%235B8C8C%22 font-family=%22sans-serif%22 font-size=%2216%22%3EBlanqueamiento%3C/text%3E%3C/svg%3E'">
+                        <div class="service-body">
+                            <h3>Blanqueamiento</h3>
+                            <p>Aclará tu sonrisa de forma segura y efectiva. Utilizamos productos de última generación para un blanqueamiento uniforme y duradero.</p>
                         </div>
-                        <h3>Ortodoncia</h3>
-                        <p>Tradicional y alineadores invisibles.</p>
                     </div>
+
+                    <!-- Tarjeta 4: Cirugía -->
                     <div class="service-card reveal reveal-delay-4">
-                        <div class="service-icon">
-                            <!-- Icono de blanqueamiento (diente con brillo) -->
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M12 2s8 4 8 10c0 5-8 10-8 10s-8-5-8-10c0-6 8-10 8-10z"/>
-                                <path d="M12 8v8M8 12h8"/>
-                            </svg>
+                        <img src="img-cirugia.jpg" alt="Cirugía" class="service-img" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%23E8F0F0%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%235B8C8C%22 font-family=%22sans-serif%22 font-size=%2216%22%3ECirugía%3C/text%3E%3C/svg%3E'">
+                        <div class="service-body">
+                            <h3>Cirugía</h3>
+                            <p>Extracciones dentales, cirugía de terceros molares y procedimientos quirúrgicos menores realizados con técnica cuidadosa y mínima molestia.</p>
                         </div>
-                        <h3>Blanqueamiento</h3>
-                        <p>Aclara tu sonrisa hasta 8 tonos en una sola sesión. Resultados visibles desde el primer día.</p>
                     </div>
+
+                    <!-- Tarjeta 5: Prótesis Fija -->
                     <div class="service-card reveal reveal-delay-1">
-                        <div class="service-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="10" r="4"/>
-                                <path d="M12 14c-3.3 0-6 1.8-6 4h12c0-2.2-2.7-4-6-4z"/>
-                            </svg>
+                        <img src="img-protesis-fija.jpg" alt="Prótesis Fija" class="service-img" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%23E8F0F0%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%235B8C8C%22 font-family=%22sans-serif%22 font-size=%2216%22%3EPrótesis Fija%3C/text%3E%3C/svg%3E'">
+                        <div class="service-body">
+                            <h3>Prótesis Fija</h3>
+                            <p>Coronas, puentes y rehabilitaciones cementadas que devuelven funcionalidad y estética a tu boca de manera permanente y confortable.</p>
                         </div>
-                        <h3>Odontopediatría</h3>
-                        <p>Atención especial para niños.</p>
                     </div>
+
+                    <!-- Tarjeta 6: Prótesis Removible -->
                     <div class="service-card reveal reveal-delay-2">
-                        <div class="service-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M12 2s8 4 8 10c0 5-8 10-8 10s-8-5-8-10c0-6 8-10 8-10z"/>
-                                <path d="M12 8v8M8 12h8"/>
-                            </svg>
+                        <img src="img-protesis-removible.jpg" alt="Prótesis Removible" class="service-img" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%23E8F0F0%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%235B8C8C%22 font-family=%22sans-serif%22 font-size=%2216%22%3EPrótesis Removible%3C/text%3E%3C/svg%3E'">
+                        <div class="service-body">
+                            <h3>Prótesis Removible</h3>
+                            <p>Prótesis parciales o completas que podés retirar para su limpieza, diseñadas a medida para devolverte comodidad y una apariencia natural.</p>
                         </div>
-                        <h3>Urgencias</h3>
-                        <p>Atención inmediata.</p>
                     </div>
                 </div>
             </div>
