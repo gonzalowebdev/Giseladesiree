@@ -1,0 +1,1461 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Od. Jesica Gisela Desiree Ramella | Odontóloga en Córdoba</title>
+    <meta name="description" content="Consultorio odontológico de Jesica Gisela Desiree Ramella en Córdoba. Reservá tu turno online de forma rápida y segura, con confirmación inmediata.">
+    <meta name="keywords" content="odontología, dentista, Córdoba, Gisela Desiree, turnos online, reserva, blanqueamiento, ortodoncia, cirugía, prótesis">
+    
+    <meta property="og:title" content="Od. Jesica Gisela Desiree Ramella | Odontóloga en Córdoba">
+    <meta property="og:description" content="Reservá tu consulta odontológica en Córdoba de manera simple y segura.">
+    <meta property="og:type" content="website">
+    
+    <link rel="canonical" href="https://www.giseladesiree.com">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Paleta Beige + Rosa */
+            --rose-deep:     #C4717A;
+            --rose-mid:      #D4909A;
+            --rose-soft:     #E8B5BC;
+            --rose-blush:    #F5D9DC;
+            --rose-pale:     #FDF0F2;
+            --beige-warm:    #F7F0E8;
+            --beige-mid:     #EDE3D7;
+            --beige-dark:    #D9C9B8;
+            --cream:         #FEFCF9;
+            --text-dark:     #2E2420;
+            --text-medium:   #6B5A54;
+            --text-light:    #A8958E;
+            --white:         #FFFFFF;
+            --gold:          #C9A87C;
+            --gold-light:    #E2CEAE;
+
+            --font-heading: 'Cormorant Garamond', Georgia, serif;
+            --font-body: 'DM Sans', -apple-system, sans-serif;
+            --section-padding: clamp(70px, 10vw, 130px);
+            --content-max-width: 1200px;
+
+            --shadow-xs: 0 1px 4px rgba(46,36,32,0.06);
+            --shadow-sm: 0 4px 16px rgba(46,36,32,0.08);
+            --shadow-md: 0 12px 40px rgba(46,36,32,0.10);
+            --shadow-lg: 0 24px 70px rgba(46,36,32,0.13);
+
+            --radius-sm: 10px;
+            --radius-md: 20px;
+            --radius-lg: 32px;
+            --radius-xl: 50px;
+            --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+        html { scroll-behavior:smooth; font-size:16px; }
+        body {
+            font-family: var(--font-body);
+            color: var(--text-dark);
+            background: var(--cream);
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+        img { max-width:100%; height:auto; display:block; }
+        a { text-decoration:none; color:inherit; transition:color var(--transition); }
+        .container { max-width:var(--content-max-width); margin:0 auto; padding:0 2rem; }
+
+        h1, h2, h3, h4 { font-family:var(--font-heading); line-height:1.15; }
+        h1 { font-size:clamp(2.8rem, 5.5vw, 5rem); font-weight:400; letter-spacing:-0.01em; }
+        h2 { font-size:clamp(2.2rem, 4vw, 3.5rem); font-weight:400; }
+        h3 { font-size:clamp(1.3rem, 2vw, 1.7rem); font-weight:500; }
+
+        .section-subtitle {
+            font-family: var(--font-body);
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            color: var(--rose-deep);
+            margin-bottom: 0.9rem;
+            font-weight: 500;
+        }
+        .section-description {
+            color: var(--text-medium);
+            font-size: 1rem;
+            max-width: 580px;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        /* ─── BUTTONS ─── */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 34px;
+            border-radius: 50px;
+            font-family: var(--font-body);
+            font-size: 0.875rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            border: none;
+            cursor: pointer;
+            transition: all var(--transition);
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        .btn-primary {
+            background: var(--rose-deep);
+            color: var(--white);
+            box-shadow: 0 6px 20px rgba(196,113,122,0.35);
+        }
+        .btn-primary:hover {
+            background: #B66070;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(196,113,122,0.4);
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--rose-deep);
+            border: 1.5px solid var(--rose-deep);
+        }
+        .btn-outline:hover {
+            background: var(--rose-deep);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        /* ─── HEADER ─── */
+        .header {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(254,252,249,0.88);
+            backdrop-filter: blur(24px);
+            border-bottom: 1px solid rgba(196,113,122,0.10);
+            transition: all var(--transition);
+        }
+        .header.scrolled { box-shadow: var(--shadow-sm); }
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: var(--content-max-width);
+            margin: 0 auto;
+        }
+        .nav-logo {
+            font-family: var(--font-heading);
+            font-size: 1.45rem;
+            font-weight: 500;
+            color: var(--text-dark);
+            letter-spacing: 0.02em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .nav-logo-icon {
+            width: 38px; height: 38px;
+            background: linear-gradient(135deg, var(--rose-deep), var(--rose-mid));
+            border-radius: 50%;
+            display: flex; align-items:center; justify-content:center;
+        }
+        .nav-logo-icon svg { fill: white; }
+        .nav-links { display:flex; align-items:center; gap:2.2rem; list-style:none; }
+        .nav-links a {
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: var(--text-medium);
+            position: relative;
+            padding: 4px 0;
+            letter-spacing: 0.2px;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px; left: 0;
+            width: 0; height: 1.5px;
+            background: var(--rose-deep);
+            transition: width var(--transition);
+            border-radius: 2px;
+        }
+        .nav-links a:hover { color: var(--rose-deep); }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-cta {
+            background: var(--rose-deep)!important;
+            color: var(--white)!important;
+            padding: 9px 22px!important;
+            border-radius: 50px;
+            font-weight: 500!important;
+        }
+        .nav-cta:hover { background: #B66070!important; transform:translateY(-2px); }
+        .nav-cta::after { display:none!important; }
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 8px;
+            z-index: 1001;
+        }
+        .mobile-menu-btn span {
+            display: block;
+            width: 26px; height: 2px;
+            background: var(--text-dark);
+            border-radius: 3px;
+            transition: all var(--transition);
+        }
+
+        /* ─── HERO ─── */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(160deg, var(--cream) 0%, var(--rose-pale) 50%, var(--beige-warm) 100%);
+            position: relative;
+            overflow: hidden;
+            padding-top: 90px;
+        }
+        /* Decorative circles */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -100px; right: -100px;
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(232,181,188,0.35) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -80px; left: -80px;
+            width: 350px; height: 350px;
+            background: radial-gradient(circle, rgba(217,201,184,0.4) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        .hero-text { animation: fadeInUp 1s ease forwards; }
+        @keyframes fadeInUp {
+            from { opacity:0; transform:translateY(35px); }
+            to { opacity:1; transform:translateY(0); }
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(196,113,122,0.1);
+            color: var(--rose-deep);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 3.5px;
+            text-transform: uppercase;
+            margin-bottom: 1.6rem;
+            border: 1px solid rgba(196,113,122,0.2);
+        }
+        .hero-badge-dot {
+            width: 7px; height: 7px;
+            background: var(--rose-deep);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity:1; transform:scale(1); }
+            50% { opacity:0.5; transform:scale(0.8); }
+        }
+        .hero h1 { margin-bottom: 1.3rem; color: var(--text-dark); }
+        .hero h1 .highlight {
+            color: var(--rose-deep);
+            font-style: italic;
+        }
+        .hero-description {
+            font-size: 1.05rem;
+            color: var(--text-medium);
+            margin-bottom: 2.2rem;
+            line-height: 1.85;
+            max-width: 460px;
+            font-weight: 300;
+        }
+        .hero-buttons { display:flex; gap:1rem; flex-wrap:wrap; }
+
+        .hero-image-wrapper {
+            position: relative;
+            animation: fadeInUp 1s ease 0.3s forwards;
+            opacity: 0;
+        }
+        .hero-image {
+            width: 100%;
+            max-width: 460px;
+            aspect-ratio: 4/5;
+            object-fit: cover;
+            border-radius: var(--radius-lg);
+            display: block;
+            position: relative;
+            z-index: 1;
+            box-shadow: var(--shadow-lg);
+        }
+        .hero-frame {
+            position: absolute;
+            inset: -14px;
+            border: 1.5px solid var(--rose-blush);
+            border-radius: calc(var(--radius-lg) + 14px);
+            z-index: 0;
+            pointer-events: none;
+        }
+        .hero-blob {
+            position: absolute;
+            bottom: -30px; right: -30px;
+            width: 130px; height: 130px;
+            background: linear-gradient(135deg, var(--rose-blush), var(--beige-mid));
+            border-radius: 50%;
+            z-index: 0;
+            opacity: 0.7;
+        }
+        .hero-stats {
+            display: flex;
+            gap: 2.5rem;
+            margin-top: 2.5rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--rose-blush);
+        }
+        .hero-stat-number {
+            font-family: var(--font-heading);
+            font-size: 1.9rem;
+            font-weight: 500;
+            color: var(--rose-deep);
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+        .hero-stat-label {
+            font-size: 0.72rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* ─── SERVICES ─── */
+        .services {
+            padding: var(--section-padding) 0;
+            background: var(--white);
+            position: relative;
+        }
+        .services::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--rose-blush), transparent);
+        }
+        .services-header { text-align:center; margin-bottom:4rem; }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.8rem;
+        }
+        .service-card {
+            background: var(--beige-warm);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            transition: all var(--transition);
+            border: 1px solid transparent;
+            display: flex;
+            flex-direction: column;
+        }
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--rose-blush);
+            background: var(--white);
+        }
+        .service-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+        .service-img-placeholder {
+            width: 100%;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .service-body {
+            padding: 1.6rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .service-icon {
+            width: 44px; height: 44px;
+            background: linear-gradient(135deg, var(--rose-blush), var(--beige-mid));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        .service-body h3 {
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+            font-size: 1.3rem;
+        }
+        .service-body p {
+            color: var(--text-medium);
+            font-size: 0.9rem;
+            line-height: 1.75;
+            flex: 1;
+            font-weight: 300;
+        }
+
+        /* ─── ABOUT ─── */
+        .about {
+            padding: var(--section-padding) 0;
+            background: var(--rose-pale);
+        }
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+        .about-image-wrapper { position: relative; }
+        .about-image {
+            width: 100%;
+            max-width: 460px;
+            aspect-ratio: 4/5;
+            object-fit: cover;
+            border-radius: var(--radius-lg);
+            display: block;
+            position: relative;
+            z-index: 1;
+            box-shadow: var(--shadow-md);
+        }
+        .about-accent-line {
+            position: absolute;
+            top: 20px; left: -20px;
+            width: 3px;
+            height: calc(100% - 40px);
+            background: linear-gradient(to bottom, var(--rose-deep), var(--rose-blush));
+            border-radius: 3px;
+            z-index: 0;
+        }
+        .about-text h2 { margin-bottom: 1.5rem; }
+        .about-text p {
+            color: var(--text-medium);
+            margin-bottom: 1.3rem;
+            line-height: 1.85;
+            font-weight: 300;
+            font-size: 0.975rem;
+        }
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.8rem;
+            margin-top: 2rem;
+        }
+        .about-feature {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.875rem;
+            color: var(--text-dark);
+            font-weight: 400;
+            padding: 8px 0;
+        }
+        .about-feature-check {
+            width: 22px; height: 22px;
+            background: linear-gradient(135deg, var(--rose-deep), var(--rose-mid));
+            border-radius: 50%;
+            display: flex; align-items:center; justify-content:center;
+            flex-shrink: 0;
+        }
+        .about-feature-check svg { fill: white; width: 12px; height: 12px; }
+
+        /* ─── CURSOS ─── */
+        .cursos {
+            padding: var(--section-padding) 0;
+            background: var(--white);
+        }
+        .cursos .services-header { text-align:center; margin-bottom:4rem; }
+        .timeline {
+            max-width: 760px;
+            margin: 0 auto;
+            position: relative;
+            padding-left: 2.5rem;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 1.5px;
+            background: linear-gradient(to bottom, var(--rose-deep), var(--rose-blush), transparent);
+        }
+        .timeline-year {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 400;
+            color: var(--rose-deep);
+            margin: 2.5rem 0 1.2rem;
+            position: relative;
+            font-style: italic;
+        }
+        .timeline-year::before {
+            content: '';
+            position: absolute;
+            left: -2.75rem;
+            top: 0.65rem;
+            width: 14px; height: 14px;
+            background: var(--rose-deep);
+            border-radius: 50%;
+            border: 3px solid var(--white);
+            box-shadow: 0 0 0 2px var(--rose-soft);
+        }
+        .timeline-course {
+            background: var(--beige-warm);
+            border-radius: var(--radius-sm);
+            padding: 1.1rem 1.5rem;
+            margin-bottom: 0.9rem;
+            border-left: 3px solid var(--rose-blush);
+            font-size: 0.9rem;
+            color: var(--text-medium);
+            font-weight: 300;
+            transition: all var(--transition);
+        }
+        .timeline-course:hover {
+            border-left-color: var(--rose-deep);
+            background: var(--white);
+            box-shadow: var(--shadow-sm);
+        }
+        .timeline-course strong {
+            color: var(--text-dark);
+            display: block;
+            margin-bottom: 0.2rem;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        /* ─── TRABAJOS ─── */
+        .trabajos {
+            padding: var(--section-padding) 0;
+            background: var(--beige-warm);
+        }
+        .instagram-placeholder {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--white);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-medium);
+            border: 1.5px dashed var(--rose-blush);
+            font-size: 0.95rem;
+        }
+
+        /* ─── FAQ ─── */
+        .faq {
+            padding: var(--section-padding) 0;
+            background: var(--rose-pale);
+        }
+        .faq-list { max-width: 760px; margin: 0 auto; }
+        .faq-item {
+            background: var(--white);
+            border-radius: var(--radius-sm);
+            margin-bottom: 0.8rem;
+            border: 1px solid var(--rose-blush);
+            overflow: hidden;
+            transition: box-shadow var(--transition);
+        }
+        .faq-item:hover { box-shadow: var(--shadow-sm); }
+        .faq-question {
+            width: 100%;
+            text-align: left;
+            padding: 1.2rem 1.5rem;
+            background: none;
+            border: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-dark);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: var(--font-body);
+            gap: 1rem;
+        }
+        .faq-icon { font-size:1.4rem; color: var(--rose-deep); flex-shrink:0; transition: transform 0.3s; }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease, padding 0.35s ease;
+        }
+        .faq-answer p {
+            padding: 0 1.5rem 1.2rem;
+            color: var(--text-medium);
+            line-height: 1.8;
+            font-size: 0.9rem;
+            font-weight: 300;
+        }
+
+        /* ─── UBICACIÓN ─── */
+        .ubicacion {
+            padding: var(--section-padding) 0;
+            background: var(--white);
+        }
+        .mapa-container {
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            border: 4px solid var(--white);
+            outline: 1px solid var(--rose-blush);
+        }
+
+        /* ─── RESERVA ─── */
+        .reserva {
+            padding: var(--section-padding) 0;
+            background: var(--beige-warm);
+            text-align: center;
+        }
+        .reserva-header { margin-bottom: 3rem; }
+        .reserva-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+            border: 1px solid var(--rose-blush);
+        }
+        .reserva-iframe {
+            width: 100%;
+            height: 700px;
+            border: none;
+            display: block;
+        }
+        @media (max-width: 768px) { .reserva-iframe { height:600px; } }
+        @media (max-width: 500px)  { .reserva-iframe { height:550px; } }
+
+        /* ─── CTA BANNER ─── */
+        .cta {
+            padding: 90px 0;
+            background: linear-gradient(135deg, var(--rose-deep) 0%, #B06070 50%, #A0505F 100%);
+            text-align: center;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: -60px; left: -60px;
+            width: 300px; height: 300px;
+            background: rgba(255,255,255,0.06);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .cta::after {
+            content: '';
+            position: absolute;
+            bottom: -80px; right: -40px;
+            width: 350px; height: 350px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .cta h2 { color:var(--white); margin-bottom:1rem; }
+        .cta p { color:rgba(255,255,255,0.88); margin-bottom:2.2rem; font-size:1.05rem; font-weight:300; }
+        .btn-cta {
+            background: var(--white);
+            color: var(--rose-deep);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 15px 38px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all var(--transition);
+        }
+        .btn-cta:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(0,0,0,0.2); }
+
+        /* ─── FOOTER ─── */
+        .footer {
+            background: var(--text-dark);
+            color: rgba(255,255,255,0.65);
+            padding: 60px 0 30px;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        .footer-brand-name {
+            font-family: var(--font-heading);
+            font-size: 1.6rem;
+            color: var(--white);
+            line-height: 1.2;
+        }
+        .footer-brand-sub {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--rose-soft);
+            margin-top: 3px;
+        }
+        .footer-desc {
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            line-height: 1.75;
+            font-weight: 300;
+            color: rgba(255,255,255,0.5);
+        }
+        .footer h4 {
+            color: var(--white);
+            font-family: var(--font-body);
+            font-size: 0.72rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 1.5rem;
+        }
+        .footer ul { list-style:none; }
+        .footer ul li { margin-bottom: 0.8rem; }
+        .footer ul li a {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.875rem;
+            font-weight: 300;
+            transition: color var(--transition);
+        }
+        .footer ul li a:hover { color: var(--rose-soft); }
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.08);
+            padding-top: 1.5rem;
+            text-align: center;
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.3);
+            font-weight: 300;
+        }
+
+        /* ─── WHATSAPP FLOAT ─── */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px; right: 30px;
+            z-index: 999;
+            width: 60px; height: 60px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 25px rgba(37,211,102,0.4);
+            transition: all var(--transition);
+        }
+        .whatsapp-float:hover { transform: scale(1.1); }
+        .whatsapp-float svg { width:32px; height:32px; fill:white; }
+
+        /* ─── BUBBLE ─── */
+        #whatsapp-bubble {
+            position: fixed;
+            bottom: 100px; right: 30px;
+            z-index: 998;
+            background: var(--white);
+            color: var(--text-dark);
+            padding: 16px 20px;
+            border-radius: 18px;
+            box-shadow: var(--shadow-lg);
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            max-width: 240px;
+            display: none;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            border: 1px solid var(--rose-blush);
+            animation: floatBubble 3s ease-in-out infinite;
+            line-height: 1.5;
+        }
+        @keyframes floatBubble {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+
+        /* ─── REVEAL ─── */
+        .reveal { opacity:0; transform:translateY(35px); transition:opacity 0.8s ease, transform 0.8s ease; }
+        .reveal.visible { opacity:1; transform:translateY(0); }
+        .reveal-delay-1 { transition-delay:0.1s; }
+        .reveal-delay-2 { transition-delay:0.2s; }
+        .reveal-delay-3 { transition-delay:0.3s; }
+        .reveal-delay-4 { transition-delay:0.4s; }
+
+        /* ─── DECORATIVE DIVIDER ─── */
+        .divider {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--rose-deep), var(--rose-blush));
+            margin: 1.2rem auto;
+            border-radius: 2px;
+        }
+
+        /* ─── MOBILE ─── */
+        @media (max-width: 968px) {
+            .hero-content { grid-template-columns:1fr; text-align:center; }
+            .hero-description { max-width:100%; }
+            .hero-buttons { justify-content:center; }
+            .hero-image-wrapper { order:-1; }
+            .hero-image { max-width:300px; margin:0 auto; }
+            .hero-stats { justify-content:center; flex-wrap:wrap; }
+            .about-content { grid-template-columns:1fr; }
+            .about-image { max-width:360px; margin:0 auto; }
+            .footer-grid { grid-template-columns:1fr 1fr; }
+            .nav-links { display:none; }
+            .mobile-menu-btn { display:flex; }
+            .nav-links.mobile-active {
+                display: flex;
+                flex-direction: column;
+                position: fixed;
+                top: 0; left: 0;
+                width: 100%; height: 100vh;
+                background: rgba(254,252,249,0.98);
+                backdrop-filter: blur(24px);
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+                z-index: 1000;
+            }
+            .nav-links.mobile-active a { font-size:1.15rem; }
+            .services-grid { grid-template-columns:1fr; }
+            .about-features { grid-template-columns:1fr; }
+        }
+        @media (max-width: 500px) {
+            .footer-grid { grid-template-columns:1fr; text-align:center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ═══ HEADER ═══ -->
+    <header class="header" id="header">
+        <nav class="nav">
+            <a href="#" class="nav-logo">
+                <div class="nav-logo-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
+                        <path d="M12 2C8.5 0.5 7 4 7 8C7 12 10 17 12 20C14 17 17 12 17 8C17 4 15.5 0.5 12 2Z"/>
+                        <path d="M8 13C9.5 15.5 11 16.5 12 16.5C13 16.5 14.5 15.5 16 13" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="1.2" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                Gisela Desiree
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#sobre-mi">Sobre mí</a></li>
+                <li><a href="#cursos">Cursos</a></li>
+                <li><a href="#reserva">Reservar Turno</a></li>
+                <li><a href="https://wa.me/5493516418451" class="nav-cta" target="_blank">WhatsApp</a></li>
+            </ul>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menú" onclick="toggleMenu()">
+                <span></span><span></span><span></span>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- ═══ HERO ═══ -->
+        <section class="hero" id="inicio">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <div class="hero-badge">
+                            <span class="hero-badge-dot"></span>
+                            Córdoba, Argentina
+                        </div>
+                        <h1>Tu sonrisa en<br><span class="highlight">las mejores manos</span></h1>
+                        <p class="hero-description">Odontología integral con enfoque personalizado y calidez humana. Reservá tu turno online en segundos.</p>
+                        <div class="hero-buttons">
+                            <a href="#reserva" class="btn btn-primary">Reservar Consulta</a>
+                            <a href="#servicios" class="btn btn-outline">Ver Servicios</a>
+                        </div>
+                        <div class="hero-stats">
+                            <div class="hero-stat">
+                                <div class="hero-stat-number">+500</div>
+                                <div class="hero-stat-label">Sonrisas</div>
+                            </div>
+                            <div class="hero-stat">
+                                <div class="hero-stat-number">24/7</div>
+                                <div class="hero-stat-label">Reservas Online</div>
+                            </div>
+                            <div class="hero-stat">
+                                <div class="hero-stat-number">100%</div>
+                                <div class="hero-stat-label">Seña Segura</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hero-image-wrapper">
+                        <img src="img1.jpg" alt="Dra. Jesica Gisela Desiree Ramella" class="hero-image"
+                             onerror="this.src='https://picsum.photos/seed/dental/460/575'">
+                        <div class="hero-frame"></div>
+                        <div class="hero-blob"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ SERVICIOS ═══ -->
+        <section class="services" id="servicios">
+            <div class="container">
+                <div class="services-header reveal">
+                    <p class="section-subtitle">Tratamientos</p>
+                    <h2>Servicios de excelencia</h2>
+                    <div class="divider"></div>
+                </div>
+                <div class="services-grid">
+
+                    <div class="service-card reveal reveal-delay-1">
+                        <img src="img-odontologia-general.jpg" alt="Odontología General" class="service-img"
+                             onerror="this.src='https://picsum.photos/seed/general/400/200'">
+                        <div class="service-body">
+                            <div class="service-icon">🦷</div>
+                            <h3>Odontología General</h3>
+                            <p>Controles periódicos, limpiezas profesionales, restauraciones estéticas y tratamientos preventivos para mantener tu salud bucal en óptimas condiciones.</p>
+                        </div>
+                    </div>
+
+                    <div class="service-card reveal reveal-delay-2">
+                        <img src="img-ortodoncia.jpg" alt="Ortodoncia" class="service-img"
+                             onerror="this.src='https://picsum.photos/seed/ortho/400/200'">
+                        <div class="service-body">
+                            <div class="service-icon">✨</div>
+                            <h3>Ortodoncia</h3>
+                            <p>Brackets convencionales y de autoligado, tanto estéticos como metálicos. En poco tiempo tendrás la sonrisa que siempre soñaste, de forma eficaz y definitiva.</p>
+                        </div>
+                    </div>
+
+                    <div class="service-card reveal reveal-delay-3">
+                        <img src="img-blanqueamiento.jpg" alt="Blanqueamiento" class="service-img"
+                             onerror="this.src='https://picsum.photos/seed/white/400/200'">
+                        <div class="service-body">
+                            <div class="service-icon">💎</div>
+                            <h3>Blanqueamiento</h3>
+                            <p>Aclará tu sonrisa de forma segura y efectiva. Utilizamos productos de última generación para un blanqueamiento uniforme y duradero.</p>
+                        </div>
+                    </div>
+
+                    <div class="service-card reveal reveal-delay-4">
+                        <img src="img-cirugia.jpg" alt="Cirugía" class="service-img"
+                             onerror="this.src='https://picsum.photos/seed/surgery/400/200'">
+                        <div class="service-body">
+                            <div class="service-icon">🩺</div>
+                            <h3>Cirugía</h3>
+                            <p>Extracciones dentales, cirugía de terceros molares y procedimientos quirúrgicos menores realizados con técnica cuidadosa y mínima molestia.</p>
+                        </div>
+                    </div>
+
+                    <div class="service-card reveal reveal-delay-1">
+                        <img src="img-protesis-fija.jpg" alt="Prótesis Fija" class="service-img"
+                             onerror="this.src='https://picsum.photos/seed/fixed/400/200'">
+                        <div class="service-body">
+                            <div class="service-icon">🔬</div>
+                            <h3>Prótesis Fija</h3>
+                            <p>Incrustaciones, coronas provisorias y definitivas de materiales de primera calidad para garantizar estética y función de forma permanente.</p>
+                        </div>
+                    </div>
+
+                    <div class="service-card reveal reveal-delay-2">
+                        <img src="img-protesis-removible.jpg" alt="Prótesis Removible" class="service-img"
+                             onerror="this.src='https://picsum.photos/seed/removable/400/200'">
+                        <div class="service-body">
+                            <div class="service-icon">🌸</div>
+                            <h3>Prótesis Removible</h3>
+                            <p>Prótesis parciales de material flexible y completas de diversos materiales que garantizan la correcta función y estética superior, libres de metal.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ SOBRE MÍ ═══ -->
+        <section class="about" id="sobre-mi">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-image-wrapper reveal">
+                        <img src="img2.jpg" alt="Consultorio Dra. Gisela Desiree" class="about-image"
+                             onerror="this.src='https://picsum.photos/seed/aboutdent/460/575'">
+                        <div class="about-accent-line"></div>
+                    </div>
+                    <div class="about-text reveal reveal-delay-2">
+                        <p class="section-subtitle">Sobre mí</p>
+                        <h2>Od. Jesica Gisela<br><em>Desiree Ramella</em></h2>
+                        <div class="divider" style="margin:1.2rem 0;"></div>
+                        <p>Odontóloga recibida en la Universidad Nacional de Córdoba. Mi enfoque combina tecnología de vanguardia con calidez humana y resultados que devuelven confianza.</p>
+                        <p>Creo en una odontología a la medida de cada paciente, donde la comunicación y el bienestar son tan importantes como el tratamiento en sí.</p>
+                        <div class="about-features">
+                            <div class="about-feature">
+                                <div class="about-feature-check">
+                                    <svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                </div>
+                                Atención personalizada
+                            </div>
+                            <div class="about-feature">
+                                <div class="about-feature-check">
+                                    <svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                </div>
+                                Formación continua
+                            </div>
+                            <div class="about-feature">
+                                <div class="about-feature-check">
+                                    <svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                </div>
+                                Ambiente relajado
+                            </div>
+                            <div class="about-feature">
+                                <div class="about-feature-check">
+                                    <svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                </div>
+                                Obras sociales
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ CURSOS ═══ -->
+        <section class="cursos" id="cursos">
+            <div class="container">
+                <div class="services-header reveal">
+                    <p class="section-subtitle">Formación Continua</p>
+                    <h2>Cursos Realizados</h2>
+                    <div class="divider"></div>
+                    <p class="section-description" style="margin:0 auto; text-align:center;">
+                        Me mantengo actualizada para brindarte siempre lo último en tratamientos dentales.
+                    </p>
+                </div>
+                <div class="timeline reveal">
+                    <div class="timeline-year">2024</div>
+                    <div class="timeline-course"><strong>Estética Dental Avanzada</strong>Universidad Nacional de Córdoba – 80 hs.</div>
+                    <div class="timeline-course"><strong>Manejo de Pacientes con Ansiedad</strong>Asociación Odontológica Argentina – 40 hs.</div>
+                    
+                    <div class="timeline-year">2023</div>
+                    <div class="timeline-course"><strong>Ortodoncia con Alineadores Invisibles</strong>Certificación Invisalign – 60 hs.</div>
+                    <div class="timeline-course"><strong>Endodoncia Mecanizada</strong>Sociedad Odontológica de Córdoba – 50 hs.</div>
+                    
+                    <div class="timeline-year">2022</div>
+                    <div class="timeline-course"><strong>Blanqueamiento Dental Combinado</strong>Fundación Sonrisa – 30 hs.</div>
+                    <div class="timeline-course"><strong>Odontopediatría Integral</strong>Círculo Odontológico de Córdoba – 45 hs.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ TRABAJOS ═══ -->
+        <section class="trabajos" id="trabajos">
+            <div class="container">
+                <div class="services-header reveal" style="text-align:center; margin-bottom:3rem;">
+                    <p class="section-subtitle">Galería</p>
+                    <h2>Mis Trabajos</h2>
+                    <div class="divider"></div>
+                    <p class="section-description" style="margin:0 auto 1rem;">
+                        Conocé algunos de los resultados que logramos día a día.
+                    </p>
+                </div>
+                <div class="reveal">
+                    <div class="instagram-placeholder">
+                        <p>⏳ Conectá tu cuenta de Instagram en <strong>LightWidget.com</strong> y pegá el código aquí.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ FAQ ═══ -->
+        <section class="faq" id="faq">
+            <div class="container">
+                <div class="services-header reveal" style="text-align:center; margin-bottom:3rem;">
+                    <p class="section-subtitle">FAQ</p>
+                    <h2>Preguntas Frecuentes</h2>
+                    <div class="divider"></div>
+                    <p class="section-description" style="margin:0 auto;">
+                        Resolvé tus dudas en segundos. Si no encontrás lo que buscás, escribinos por WhatsApp.
+                    </p>
+                </div>
+                <div class="faq-list">
+                    <div class="faq-item reveal">
+                        <button class="faq-question" onclick="toggleFAQ(this)">
+                            ¿Cómo reservo mi turno?
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Podés reservar tu turno escribiéndonos por WhatsApp. Al momento de tomar el turno, podés abonarlo por transferencia ($20.000) o pagarlo directamente cuando asistís por primera vez ($25.000).</p>
+                        </div>
+                    </div>
+                    <div class="faq-item reveal">
+                        <button class="faq-question" onclick="toggleFAQ(this)">
+                            ¿Qué pasa si necesito cancelar o reprogramar?
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Podés cancelar o cambiar tu turno contactándonos por WhatsApp con anticipación. Te pedimos que avises con al menos 24 horas para que podamos reasignar el horario a otro paciente.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item reveal">
+                        <button class="faq-question" onclick="toggleFAQ(this)">
+                            ¿Atienden por obra social?
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Sí, trabajamos con varias obras sociales. Escribinos por WhatsApp indicando cuál tenés y te confirmamos si está dentro de nuestra cartilla.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item reveal">
+                        <button class="faq-question" onclick="toggleFAQ(this)">
+                            ¿Duele el blanqueamiento dental?
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>No, el procedimiento es completamente indoloro. Utilizamos productos de última generación que minimizan la sensibilidad. La mayoría de los pacientes no refieren molestias durante ni después del tratamiento.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item reveal">
+                        <button class="faq-question" onclick="toggleFAQ(this)">
+                            ¿Cuánto dura un tratamiento de ortodoncia?
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Depende de cada caso. En promedio, un tratamiento puede durar entre 12 y 24 meses. En la primera consulta evaluamos tu situación y te damos un plan detallado con los tiempos estimados.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ UBICACIÓN ═══ -->
+        <section class="ubicacion" id="ubicacion">
+            <div class="container">
+                <div class="services-header reveal" style="text-align:center; margin-bottom:3rem;">
+                    <p class="section-subtitle">Ubicación</p>
+                    <h2>Dónde atendemos</h2>
+                    <div class="divider"></div>
+                    <p class="section-description" style="margin:0 auto 1rem;">
+                        Consultorio en Córdoba Capital. Una vez que confirmes tu turno, te enviamos la dirección exacta.
+                    </p>
+                </div>
+                <div class="mapa-container reveal">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3404.907659228984!2d-64.190131384852!3d-31.416722981401!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9432987e8b7d6f6f%3A0x8f8f8f8f8f8f8f8f!2sC%C3%B3rdoba%2C%20Argentina!5e0!3m2!1ses!2ses!4v1610000000000"
+                        width="100%" height="400" style="border:0; display:block;"
+                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                        title="Ubicación del consultorio">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ RESERVA ═══ -->
+        <section class="reserva" id="reserva">
+            <div class="container">
+                <div class="reserva-header reveal">
+                    <p class="section-subtitle">Turnos Online</p>
+                    <h2>Consulta</h2>
+                    <div class="divider"></div>
+                </div>
+
+                <!-- Tarjetas de consulta: grid en desktop, slider en mobile -->
+                <style>
+                    .consulta-slider-wrap { max-width:760px; margin:0 auto 2rem; position:relative; }
+                    .consulta-slider {
+                        display: grid;
+                        grid-template-columns: 1fr 1fr;
+                        gap: 2rem;
+                    }
+                    .consulta-dots { display:none; justify-content:center; gap:8px; margin-top:1.2rem; }
+                    .consulta-dot {
+                        width:8px; height:8px; border-radius:50%;
+                        background:var(--rose-blush); border:none; padding:0; cursor:pointer;
+                        transition:background 0.3s, transform 0.3s;
+                    }
+                    .consulta-dot.active { background:var(--rose-deep); transform:scale(1.25); }
+
+                    @media (max-width: 600px) {
+                        .consulta-slider {
+                            display: flex;
+                            overflow-x: scroll;
+                            scroll-snap-type: x mandatory;
+                            -webkit-overflow-scrolling: touch;
+                            scrollbar-width: none;
+                            gap: 1rem;
+                            padding-bottom: 4px;
+                        }
+                        .consulta-slider::-webkit-scrollbar { display:none; }
+                        .consulta-slider > div {
+                            scroll-snap-align: center;
+                            flex: 0 0 88%;
+                            min-width: 0;
+                        }
+                        .consulta-dots { display:flex; }
+                    }
+                </style>
+
+                <div class="consulta-slider-wrap reveal reveal-delay-1">
+                    <div class="consulta-slider" id="consultaSlider">
+
+                        <!-- Opción 1: Transferencia -->
+                        <div style="background:var(--white); border-radius:var(--radius-md); padding:2.2rem 2rem; border:1.5px solid var(--rose-blush); box-shadow:var(--shadow-sm); display:flex; flex-direction:column; gap:0.8rem;">
+                            <div style="font-size:2rem; margin-bottom:0.4rem;">🏦</div>
+                            <p class="section-subtitle" style="margin-bottom:0;">Reservando por transferencia</p>
+                            <p style="color:var(--text-medium); font-size:0.9rem; font-weight:300; line-height:1.7;">
+                                Reservando por transferencia a la hora de tomar el turno
+                            </p>
+                            <div style="font-family:var(--font-heading); font-size:2.8rem; font-weight:600; color:var(--rose-deep); line-height:1; margin-top:auto; padding-top:0.8rem;">
+                                $20.000
+                            </div>
+                            <div style="background:var(--beige-warm); border-radius:var(--radius-sm); padding:0.8rem 1rem; margin-top:0.4rem;">
+                                <p style="font-size:0.72rem; text-transform:uppercase; letter-spacing:2px; color:var(--text-light); margin-bottom:4px;">Alias</p>
+                                <p style="font-family:monospace; font-size:0.95rem; font-weight:600; color:var(--text-dark); letter-spacing:0.5px;">od.gisela.desiree</p>
+                            </div>
+                        </div>
+
+                        <!-- Opción 2: Primera visita -->
+                        <div style="background:linear-gradient(135deg, var(--rose-deep), #B06070); border-radius:var(--radius-md); padding:2.2rem 2rem; box-shadow:var(--shadow-md); display:flex; flex-direction:column; gap:0.8rem;">
+                            <div style="font-size:2rem; margin-bottom:0.4rem;">🏥</div>
+                            <p style="font-size:0.72rem; text-transform:uppercase; letter-spacing:5px; color:rgba(255,255,255,0.75); margin-bottom:0;">Abonando en el momento</p>
+                            <p style="color:rgba(255,255,255,0.88); font-size:0.9rem; font-weight:300; line-height:1.7;">
+                                Abonando acá en el momento que asistís por primera vez
+                            </p>
+                            <div style="font-family:var(--font-heading); font-size:2.8rem; font-weight:600; color:var(--white); line-height:1; margin-top:auto; padding-top:0.8rem;">
+                                $25.000
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- Dots (solo visible en mobile) -->
+                    <div class="consulta-dots" id="consultaDots">
+                        <button class="consulta-dot active" onclick="scrollToCard(0)"></button>
+                        <button class="consulta-dot" onclick="scrollToCard(1)"></button>
+                    </div>
+                </div>
+
+                <script>
+                    (function(){
+                        const slider = document.getElementById('consultaSlider');
+                        const dots = document.querySelectorAll('.consulta-dot');
+                        if (!slider) return;
+                        slider.addEventListener('scroll', function() {
+                            const index = Math.round(slider.scrollLeft / slider.offsetWidth);
+                            dots.forEach((d, i) => d.classList.toggle('active', i === index));
+                        }, { passive: true });
+                    })();
+                    function scrollToCard(index) {
+                        const slider = document.getElementById('consultaSlider');
+                        const card = slider.children[index];
+                        slider.scrollTo({ left: card.offsetLeft - (slider.offsetWidth - card.offsetWidth) / 2, behavior: 'smooth' });
+                    }
+                </script>
+
+                <!--
+                <div class="reserva-container reveal reveal-delay-1">
+                    <iframe 
+                        id="reservaIframe"
+                        src="https://reservasimple.com/gwebdev" 
+                        class="reserva-iframe" 
+                        title="Calendario de turnos"
+                        loading="lazy"
+                        allow="camera; microphone; payment">
+                    </iframe>
+                </div>
+                -->
+
+                <p style="margin-top:0.5rem; font-size:0.875rem; color:var(--text-light); text-align:center;">
+                    ¿Querés reservar tu turno? <a href="https://wa.me/5493516418451" target="_blank" style="color:var(--rose-deep); font-weight:500;">Escribinos por WhatsApp</a>
+                </p>
+            </div>
+        </section>
+
+        <!-- ═══ CTA BANNER ═══ -->
+        <section class="cta">
+            <div class="container" style="position:relative; z-index:1;">
+                <h2>Tu sonrisa te está esperando</h2>
+                <p>Reservá ahora y empezá a transformar tu salud bucal.</p>
+                <a href="#reserva" class="btn-cta">Quiero mi turno</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div style="display:flex; align-items:center; gap:14px; margin-bottom:1rem;">
+                        <div style="width:46px; height:46px; background:linear-gradient(135deg, var(--rose-deep), var(--rose-mid)); border-radius:50%; display:flex; align-items:center; justify-content:center;">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="white">
+                                <path d="M12 2C8.5 0.5 7 4 7 8C7 12 10 17 12 20C14 17 17 12 17 8C17 4 15.5 0.5 12 2Z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="footer-brand-name">Gisela Desiree</div>
+                            <div class="footer-brand-sub">Odontología</div>
+                        </div>
+                    </div>
+                    <p class="footer-desc">Odontología integral en Córdoba · Turnos online · Transferencia o pago en consultorio.</p>
+                </div>
+                <div>
+                    <h4>Enlaces</h4>
+                    <ul>
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#servicios">Servicios</a></li>
+                        <li><a href="#sobre-mi">Sobre mí</a></li>
+                        <li><a href="#cursos">Cursos</a></li>
+                        <li><a href="#reserva">Reservar</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Contacto</h4>
+                    <ul>
+                        <li><a href="https://wa.me/5493516418451">+54 9 351 641-8451</a></li>
+                        <li><a href="https://www.instagram.com/od.gisela.desiree">@od.gisela.desiree</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Od. Jesica Gisela Desiree Ramella · Todos los derechos reservados</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/5493516418451" class="whatsapp-float" target="_blank" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+
+    <!-- Bubble WhatsApp -->
+    <div id="whatsapp-bubble">
+        <span style="font-size:1.3rem;">💬</span>
+        <span style="flex:1; font-size:0.875rem;">¿Querés reservar tu turno? 😊</span>
+        <button id="close-bubble" style="background:none; border:none; font-size:1.1rem; cursor:pointer; color:var(--text-light); padding:0; line-height:1;">&times;</button>
+    </div>
+
+    <script>
+        // Header scroll
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 50));
+
+        // Mobile menu
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        function toggleMenu() {
+            navLinks.classList.toggle('mobile-active');
+            document.body.style.overflow = navLinks.classList.contains('mobile-active') ? 'hidden' : '';
+        }
+        function closeMenu() { navLinks.classList.remove('mobile-active'); document.body.style.overflow = ''; }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
+                    if (navLinks.classList.contains('mobile-active')) closeMenu();
+                }
+            });
+        });
+
+        // Reveal on scroll
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // FAQ accordion
+        function toggleFAQ(button) {
+            const answer = button.nextElementSibling;
+            const icon = button.querySelector('.faq-icon');
+            document.querySelectorAll('.faq-answer').forEach(item => {
+                if (item !== answer && item.style.maxHeight) {
+                    item.style.maxHeight = null;
+                    item.previousElementSibling.querySelector('.faq-icon').textContent = '+';
+                }
+            });
+            if (answer.style.maxHeight) {
+                answer.style.maxHeight = null;
+                icon.textContent = '+';
+            } else {
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+                icon.textContent = '−';
+            }
+        }
+
+        // WhatsApp bubble
+        (function() {
+            const bubble = document.getElementById('whatsapp-bubble');
+            const closeBtn = document.getElementById('close-bubble');
+            const delay = 12000;
+            const hideAfter = 25000;
+            let timeoutBubble, timeoutHide;
+            let hasShown = sessionStorage.getItem('wabubble_shown');
+
+            function mostrarBubble() {
+                if (hasShown) return;
+                bubble.style.display = 'flex';
+                bubble.style.opacity = '0';
+                bubble.style.transform = 'translateY(20px)';
+                requestAnimationFrame(() => {
+                    bubble.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+                    bubble.style.opacity = '1';
+                    bubble.style.transform = 'translateY(0)';
+                });
+                sessionStorage.setItem('wabubble_shown', '1');
+                timeoutHide = setTimeout(ocultarBubble, hideAfter - delay);
+            }
+            function ocultarBubble() {
+                bubble.style.opacity = '0';
+                bubble.style.transform = 'translateY(20px)';
+                setTimeout(() => { bubble.style.display = 'none'; }, 400);
+                clearTimeout(timeoutHide);
+            }
+            function abrirWhatsApp() {
+                window.open('https://wa.me/5493516418451?text=Hola%20Gisela%2C%20quiero%20reservar%20un%20turno', '_blank');
+                ocultarBubble();
+            }
+            if (!hasShown) timeoutBubble = setTimeout(mostrarBubble, delay);
+            bubble.addEventListener('click', function(e) { if (e.target !== closeBtn) abrirWhatsApp(); });
+            closeBtn.addEventListener('click', function(e) { e.stopPropagation(); ocultarBubble(); });
+            window.addEventListener('beforeunload', () => { clearTimeout(timeoutBubble); clearTimeout(timeoutHide); });
+        })();
+    </script>
+</body>
+</html>
