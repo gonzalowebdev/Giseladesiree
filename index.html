@@ -559,20 +559,81 @@
             padding: var(--section-padding) 0;
             background: var(--beige-warm);
         }
-        .instagram-placeholder {
-            max-width: 800px;
+
+        /* Gallery slider */
+        .gallery-wrap {
+            max-width: 860px;
             margin: 0 auto;
-            background: var(--white);
+            position: relative;
+        }
+        .gallery-track-outer {
             border-radius: var(--radius-md);
-            box-shadow: var(--shadow-md);
             overflow: hidden;
-            min-height: 400px;
+            box-shadow: var(--shadow-lg);
+            background: var(--text-dark);
+            aspect-ratio: 4/3;
+            position: relative;
+        }
+        .gallery-track {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-medium);
-            border: 1.5px dashed var(--rose-blush);
-            font-size: 0.95rem;
+            height: 100%;
+            transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
+        }
+        .gallery-slide {
+            flex: 0 0 100%;
+            height: 100%;
+        }
+        .gallery-slide img {
+            width: 100%; height: 100%;
+            object-fit: cover; display: block;
+        }
+        .gallery-empty {
+            width: 100%; height: 100%;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            gap: 0.8rem; color: var(--text-light);
+        }
+        .gallery-empty-icon { font-size: 2.5rem; opacity: 0.4; }
+        .gallery-empty-text { font-size: 0.9rem; font-weight: 300; }
+
+        /* Arrows */
+        .gallery-arrow {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            width: 44px; height: 44px; border-radius: 50%;
+            background: rgba(254,252,249,0.92); border: none; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: var(--shadow-md); z-index: 2;
+            transition: all 0.25s; color: var(--rose-deep); font-size: 1.1rem;
+        }
+        .gallery-arrow:hover { background: var(--white); transform: translateY(-50%) scale(1.08); }
+        .gallery-arrow.prev { left: -22px; }
+        .gallery-arrow.next { right: -22px; }
+        .gallery-arrow:disabled { opacity: 0.3; cursor: default; transform: translateY(-50%); }
+
+        /* Dots */
+        .gallery-dots {
+            display: flex; justify-content: center; gap: 8px; margin-top: 1.3rem;
+        }
+        .gallery-dot {
+            width: 8px; height: 8px; border-radius: 50%;
+            background: var(--rose-blush); border: none; padding: 0; cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+        }
+        .gallery-dot.active { background: var(--rose-deep); transform: scale(1.3); }
+
+        /* Counter badge */
+        .gallery-counter {
+            position: absolute; bottom: 14px; right: 16px;
+            background: rgba(46,36,32,0.55); color: rgba(255,255,255,0.9);
+            font-size: 0.75rem; font-weight: 500; letter-spacing: 1px;
+            padding: 4px 11px; border-radius: 50px; z-index: 2;
+            backdrop-filter: blur(6px);
+        }
+
+        @media (max-width: 640px) {
+            .gallery-arrow.prev { left: 8px; }
+            .gallery-arrow.next { right: 8px; }
+            .gallery-arrow { width: 36px; height: 36px; font-size: 0.9rem; }
         }
 
         /* ─── FAQ ─── */
@@ -1085,11 +1146,77 @@
                         Conocé algunos de los resultados que logramos día a día.
                     </p>
                 </div>
-                <div class="reveal">
-                    <div class="instagram-placeholder">
-                        <p>⏳ Conectá tu cuenta de Instagram en <strong>LightWidget.com</strong> y pegá el código aquí.</p>
+                <div class="gallery-wrap reveal" id="gallery-wrap">
+                    <div class="gallery-track-outer">
+                        <div class="gallery-track" id="gallery-track">
+                            <!-- Las imágenes se insertan desde content-loader.js -->
+                            <div class="gallery-slide">
+                                <div class="gallery-empty">
+                                    <div class="gallery-empty-icon">🖼️</div>
+                                    <div class="gallery-empty-text">Las fotos de tus trabajos aparecerán acá</div>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="gallery-counter" id="gallery-counter" style="display:none;">1 / 1</span>
                     </div>
+                    <button class="gallery-arrow prev" id="gallery-prev" onclick="galleryMove(-1)" aria-label="Anterior">&#8592;</button>
+                    <button class="gallery-arrow next" id="gallery-next" onclick="galleryMove(1)"  aria-label="Siguiente">&#8594;</button>
+                    <div class="gallery-dots" id="gallery-dots"></div>
                 </div>
+
+                <script>
+                (function(){
+                    let current = 0;
+                    let total   = 0;
+
+                    window.galleryInit = function(count) {
+                        total = count;
+                        renderDots();
+                        updateState();
+                        if (total > 1) document.getElementById('gallery-counter').style.display = '';
+                    };
+
+                    window.galleryMove = function(dir) {
+                        current = (current + dir + total) % total;
+                        document.getElementById('gallery-track').style.transform =
+                            'translateX(-' + (current * 100) + '%)';
+                        updateState();
+                    };
+
+                    function renderDots() {
+                        const el = document.getElementById('gallery-dots');
+                        el.innerHTML = Array.from({ length: total }, (_, i) =>
+                            `<button class="gallery-dot${i === 0 ? ' active' : ''}"
+                                onclick="galleryGoto(${i})" aria-label="Ir a foto ${i+1}"></button>`
+                        ).join('');
+                    }
+
+                    window.galleryGoto = function(i) {
+                        current = i;
+                        document.getElementById('gallery-track').style.transform =
+                            'translateX(-' + (current * 100) + '%)';
+                        updateState();
+                    };
+
+                    function updateState() {
+                        document.querySelectorAll('.gallery-dot').forEach((d, i) =>
+                            d.classList.toggle('active', i === current));
+                        const counter = document.getElementById('gallery-counter');
+                        if (counter) counter.textContent = (current + 1) + ' / ' + total;
+                    }
+
+                    // Swipe touch support
+                    let startX = 0;
+                    const track = document.getElementById('gallery-track');
+                    if (track) {
+                        track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+                        track.addEventListener('touchend',   e => {
+                            const diff = startX - e.changedTouches[0].clientX;
+                            if (Math.abs(diff) > 40) galleryMove(diff > 0 ? 1 : -1);
+                        }, { passive: true });
+                    }
+                })();
+                </script>
             </div>
         </section>
 
@@ -1457,5 +1584,6 @@
             window.addEventListener('beforeunload', () => { clearTimeout(timeoutBubble); clearTimeout(timeoutHide); });
         })();
     </script>
+    <script src="content-loader.js"></script>
 </body>
 </html>
