@@ -36,12 +36,14 @@ const CL_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJ
     { data: courses },
     { data: faqs },
     { data: gallery },
+    { data: svcImages },
   ] = await Promise.all([
     sb.from('content').select('*'),
     sb.from('services').select('*').order('sort_order').order('created_at'),
     sb.from('courses').select('*').order('year', { ascending: false }).order('sort_order'),
     sb.from('faqs').select('*').order('sort_order'),
     sb.from('gallery').select('*').order('created_at', { ascending: false }).limit(6),
+    sb.from('service_images').select('*').order('sort_order').order('created_at'),
   ]);
 
   // Si Supabase no devuelve nada, no rompas el sitio
@@ -92,12 +94,33 @@ const CL_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJ
     });
   }
 
-  // ── 5. INSTAGRAM ──────────────────────────────────────
-  if (c.instagram_handle) {
-    const handle = c.instagram_handle.replace('@', '');
+  // ── 5. REDES SOCIALES ────────────────────────────────
+  // Instagram
+  const igUrl = c.instagram_url || c.instagram_handle;
+  if (igUrl) {
+    const url = igUrl.startsWith('http') ? igUrl
+      : 'https://www.instagram.com/' + igUrl.replace('@', '');
+    ['#footer-social-instagram', '#menu-social-instagram'].forEach(sel => {
+      const el = document.querySelector(sel);
+      if (el) el.href = url;
+    });
+    // Fallback: any remaining instagram.com link
     document.querySelectorAll('a[href*="instagram.com"]').forEach(a => {
-      a.href = 'https://www.instagram.com/' + handle;
-      if (a.textContent.trim().startsWith('@')) a.textContent = '@' + handle;
+      if (!a.id) a.href = url;
+    });
+  }
+  // TikTok
+  if (c.tiktok_url) {
+    ['#footer-social-tiktok', '#menu-social-tiktok'].forEach(sel => {
+      const el = document.querySelector(sel);
+      if (el) el.href = c.tiktok_url;
+    });
+  }
+  // Facebook
+  if (c.facebook_url) {
+    ['#footer-social-facebook', '#menu-social-facebook'].forEach(sel => {
+      const el = document.querySelector(sel);
+      if (el) el.href = c.facebook_url;
     });
   }
 
@@ -182,27 +205,49 @@ const CL_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJ
     if (priceEl && c.reserva_price2) priceEl.textContent = c.reserva_price2;
   }
 
-  // ── 9. SERVICIOS — reconstruye la grilla ──────────────
+  // ── 9. SERVICIOS — reconstruye la grilla con slider multi-imagen ──
   if (services && services.length) {
     const grid = document.querySelector('.services-grid');
     if (grid) {
-      const delays = ['reveal-delay-1', 'reveal-delay-2', 'reveal-delay-3', 'reveal-delay-4'];
-      grid.innerHTML = services.map((s, i) => `
-        <div class="service-card reveal ${delays[i % 4]}">
-          <img
-            src="${s.image_url || ''}"
-            alt="${s.title}"
-            class="service-img"
-            onerror="this.src='https://picsum.photos/seed/srv${i}/400/200'">
-          <div class="service-body">
-            <div class="service-icon">${s.icon || '🦷'}</div>
-            <h3>${s.title}</h3>
-            <p>${s.description || ''}</p>
-          </div>
-        </div>`).join('');
+      // Agrupar imágenes por service_id
+      const imgsByService = {};
+      (svcImages || []).forEach(img => {
+        if (!imgsByService[img.service_id]) imgsByService[img.service_id] = [];
+        imgsByService[img.service_id].push(img);
+      });
 
-      // Re-observar los nuevos elementos para la animación reveal
+      const delays = ['reveal-delay-1', 'reveal-delay-2', 'reveal-delay-3', 'reveal-delay-4'];
+
+      grid.innerHTML = services.map((s, i) => {
+        const imgs = imgsByService[s.id] || [];
+        const slides = imgs.length
+          ? imgs.map(img => `
+              <div class="svc-img-slide">
+                <img src="${img.image_url}" alt="${s.title}" class="service-img"
+                     loading="lazy" onerror="this.parentElement.style.display='none'">
+              </div>`).join('')
+          : `<div class="svc-img-slide">
+               <img src="" alt="${s.title}" class="service-img"
+                    onerror="this.src='https://picsum.photos/seed/srv${i}/400/200'">
+             </div>`;
+
+        return `
+          <div class="service-card reveal ${delays[i % 4]}">
+            <div class="svc-img-slider">
+              <div class="svc-img-track">${slides}</div>
+            </div>
+            <div class="service-body">
+              <div class="service-icon">${s.icon || '🦷'}</div>
+              <h3>${s.title}</h3>
+              <p>${s.description || ''}</p>
+            </div>
+          </div>`;
+      }).join('');
+
       reobserveReveals(grid.querySelectorAll('.reveal'));
+
+      // Inicializar sliders de servicios
+      if (typeof window.initSvcSliders === 'function') window.initSvcSliders();
     }
   }
 

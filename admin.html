@@ -352,15 +352,23 @@ code { background:var(--beige-warm); padding:2px 7px; border-radius:5px; font-si
             <label>Nombre en el logo</label>
             <input type="text" id="g-logo_text" placeholder="Gisela Desiree">
           </div>
+          <div class="form-group">
+            <label>WhatsApp (solo números, sin +)</label>
+            <input type="text" id="g-whatsapp_number" placeholder="5493516418451">
+          </div>
           <div class="form-row">
             <div class="form-group">
-              <label>WhatsApp (solo números)</label>
-              <input type="text" id="g-whatsapp_number" placeholder="5493516418451">
+              <label>Instagram — URL completa</label>
+              <input type="text" id="g-instagram_url" placeholder="https://www.instagram.com/od.gisela.desiree">
             </div>
             <div class="form-group">
-              <label>Instagram (con @)</label>
-              <input type="text" id="g-instagram_handle" placeholder="@od.gisela.desiree">
+              <label>TikTok — URL completa</label>
+              <input type="text" id="g-tiktok_url" placeholder="https://www.tiktok.com/@usuario">
             </div>
+          </div>
+          <div class="form-group">
+            <label>Facebook — URL completa</label>
+            <input type="text" id="g-facebook_url" placeholder="https://www.facebook.com/usuario">
           </div>
           <button class="btn btn-primary" onclick="saveSection('general')">💾 Guardar General</button>
         </div>
@@ -643,12 +651,22 @@ create table if not exists gallery (
   created_at timestamptz default now()
 );
 
--- 5. Seguridad: solo usuarios autenticados pueden escribir
-alter table content  enable row level security;
-alter table services enable row level security;
-alter table courses  enable row level security;
-alter table faqs     enable row level security;
-alter table gallery  enable row level security;
+-- 6. Fotos de servicios (múltiples por servicio)
+create table if not exists service_images (
+  id         uuid primary key default gen_random_uuid(),
+  service_id uuid references services(id) on delete cascade,
+  image_url  text not null,
+  sort_order int default 0,
+  created_at timestamptz default now()
+);
+
+-- 7. Seguridad: solo usuarios autenticados pueden escribir
+alter table content        enable row level security;
+alter table services       enable row level security;
+alter table courses        enable row level security;
+alter table faqs           enable row level security;
+alter table gallery        enable row level security;
+alter table service_images enable row level security;
 
 create policy "Auth full access" on content
   for all to authenticated using (true) with check (true);
@@ -660,8 +678,10 @@ create policy "Auth full access" on faqs
   for all to authenticated using (true) with check (true);
 create policy "Auth full access" on gallery
   for all to authenticated using (true) with check (true);
+create policy "Auth full access" on service_images
+  for all to authenticated using (true) with check (true);
 
--- 6. Lectura pública para el index.html
+-- 8. Lectura pública para el index.html
 create policy "Public read" on content
   for select to anon using (true);
 create policy "Public read" on services
@@ -669,6 +689,8 @@ create policy "Public read" on services
 create policy "Public read" on courses
   for select to anon using (true);
 create policy "Public read" on faqs
+  for select to anon using (true);
+create policy "Public read" on service_images
   for select to anon using (true);
 create policy "Public read" on gallery
   for select to anon using (true);</div>
@@ -729,20 +751,21 @@ create policy "Public read" on gallery
         <input type="number" id="ms-sort_order" placeholder="0" min="0">
       </div>
     </div>
-    <div class="form-group">
-      <label>Imagen del servicio</label>
-      <div class="img-upload-area" onclick="triggerUpload(this)">
-        <input type="file" accept="image/*" onchange="handleImageUpload(this,null,'ms-img-preview',true)">
-        <p class="img-upload-text">📸 Clic para subir imagen</p>
-        <p class="img-upload-hint">Recomendado: 400×200 px</p>
-      </div>
-      <img id="ms-img-preview" class="img-preview">
-      <input type="hidden" id="ms-image_url">
-    </div>
     <input type="hidden" id="ms-id">
-    <div class="modal-footer">
+    <div class="modal-footer" style="margin-top:0.8rem;">
       <button class="btn btn-outline" onclick="closeModal('modal-service')">Cancelar</button>
-      <button class="btn btn-primary" onclick="saveService()">Guardar</button>
+      <button class="btn btn-primary" onclick="saveService()">Guardar servicio</button>
+    </div>
+
+    <!-- Imágenes — solo visible en modo edición -->
+    <div id="ms-images-section" style="display:none; margin-top:1.5rem; padding-top:1.5rem; border-top:1px solid var(--rose-blush);">
+      <p class="subsection-label">Fotos del servicio</p>
+      <div id="ms-images-grid" style="display:grid; grid-template-columns:repeat(auto-fill,minmax(130px,1fr)); gap:0.8rem; margin-bottom:1rem;"></div>
+      <div class="img-upload-area" onclick="triggerUpload(this)">
+        <input type="file" accept="image/*" onchange="uploadServiceImage(this)">
+        <p class="img-upload-text">📸 Agregar foto</p>
+        <p class="img-upload-hint">Recomendado: 400×200 px mínimo</p>
+      </div>
     </div>
   </div>
 </div>
@@ -893,7 +916,7 @@ function showImgPreview(id, url) {
 
 // ─── CONTENT KEY-VALUE ───────────────
 const SECTION_KEYS = {
-  'general':  ['logo_text', 'whatsapp_number', 'instagram_handle'],
+  'general':  ['logo_text', 'whatsapp_number', 'instagram_url', 'tiktok_url', 'facebook_url'],
   'hero':     ['hero_badge', 'hero_title_line1', 'hero_title_highlight', 'hero_description',
                'hero_btn_primary', 'hero_btn_outline',
                'hero_stat1_number', 'hero_stat1_label',
@@ -965,25 +988,81 @@ function renderServices(list) {
     </div>`).join('');
 }
 
-function openServiceModal(id) {
-  ['ms-id','ms-title','ms-description','ms-image_url'].forEach(f => document.getElementById(f).value = '');
+async function openServiceModal(id) {
+  ['ms-id','ms-title','ms-description'].forEach(f => document.getElementById(f).value = '');
   document.getElementById('ms-icon').value = '🦷';
   document.getElementById('ms-sort_order').value = '0';
-  document.getElementById('ms-img-preview').style.display = 'none';
+  document.getElementById('ms-images-section').style.display = 'none';
+  document.getElementById('ms-images-grid').innerHTML = '';
   document.getElementById('modal-service-title').textContent = id ? 'Editar Servicio' : 'Agregar Servicio';
   if (id) {
-    sb.from('services').select('*').eq('id', id).single().then(({ data: d }) => {
-      if (!d) return;
+    const { data: d } = await sb.from('services').select('*').eq('id', id).single();
+    if (d) {
       document.getElementById('ms-id').value = d.id;
       document.getElementById('ms-title').value = d.title || '';
       document.getElementById('ms-description').value = d.description || '';
       document.getElementById('ms-icon').value = d.icon || '🦷';
       document.getElementById('ms-sort_order').value = d.sort_order ?? 0;
-      document.getElementById('ms-image_url').value = d.image_url || '';
-      if (d.image_url) showImgPreview('ms-img-preview', d.image_url);
-    });
+    }
+    document.getElementById('ms-images-section').style.display = 'block';
+    await loadServiceImages(id);
   }
   openModal('modal-service');
+}
+
+async function loadServiceImages(serviceId) {
+  const { data } = await sb.from('service_images').select('*')
+    .eq('service_id', serviceId).order('sort_order').order('created_at');
+  renderServiceImagesGrid(data || []);
+}
+
+function renderServiceImagesGrid(images) {
+  const grid = document.getElementById('ms-images-grid');
+  if (!images.length) {
+    grid.innerHTML = '<p class="empty-msg">Sin fotos aún — subí la primera.</p>';
+    return;
+  }
+  grid.innerHTML = images.map(img => `
+    <div style="position:relative; border-radius:var(--radius-sm); overflow:hidden; aspect-ratio:4/3; box-shadow:var(--shadow-sm);">
+      <img src="${img.image_url}" style="width:100%;height:100%;object-fit:cover;display:block;">
+      <button onclick="deleteSvcImage('${img.id}')"
+        style="position:absolute;top:5px;right:5px;width:26px;height:26px;
+               border-radius:50%;border:none;cursor:pointer;font-size:0.75rem;
+               background:rgba(46,36,32,0.6);color:white;display:flex;
+               align-items:center;justify-content:center;backdrop-filter:blur(4px);"
+        onmouseover="this.style.background='rgba(192,57,43,0.85)'"
+        onmouseout="this.style.background='rgba(46,36,32,0.6)'"
+        title="Eliminar foto">✕</button>
+    </div>`).join('');
+}
+
+async function uploadServiceImage(input) {
+  const file = input.files[0];
+  if (!file) return;
+  const serviceId = document.getElementById('ms-id').value;
+  if (!serviceId) { toast('❌ Guardá el servicio primero', 'error'); return; }
+  toast('⏳ Subiendo foto...');
+  try {
+    const ext  = file.name.split('.').pop();
+    const name = `services/${serviceId}/${Date.now()}.${ext}`;
+    const { error: upErr } = await sb.storage.from('site-images').upload(name, file, { upsert: true });
+    if (upErr) throw upErr;
+    const { data: { publicUrl } } = sb.storage.from('site-images').getPublicUrl(name);
+    const { error: dbErr } = await sb.from('service_images').insert({ service_id: serviceId, image_url: publicUrl, sort_order: 0 });
+    if (dbErr) throw dbErr;
+    input.value = '';
+    await loadServiceImages(serviceId);
+    toast('✅ Foto subida', 'success');
+  } catch (e) { toast('❌ Error: ' + e.message, 'error'); }
+}
+
+async function deleteSvcImage(imgId) {
+  if (!confirm('¿Eliminás esta foto?')) return;
+  const serviceId = document.getElementById('ms-id').value;
+  const { error } = await sb.from('service_images').delete().eq('id', imgId);
+  if (error) { toast('❌ Error al eliminar', 'error'); return; }
+  await loadServiceImages(serviceId);
+  toast('✅ Foto eliminada', 'success');
 }
 
 async function saveService() {
@@ -992,23 +1071,31 @@ async function saveService() {
     title:       document.getElementById('ms-title').value.trim(),
     description: document.getElementById('ms-description').value.trim(),
     icon:        document.getElementById('ms-icon').value.trim() || '🦷',
-    image_url:   document.getElementById('ms-image_url').value.trim(),
     sort_order:  parseInt(document.getElementById('ms-sort_order').value) || 0,
   };
   if (!row.title) { toast('❌ El título es obligatorio', 'error'); return; }
   try {
-    const { error } = id
-      ? await sb.from('services').update(row).eq('id', id)
-      : await sb.from('services').insert(row);
-    if (error) throw error;
-    closeModal('modal-service');
-    await loadServices();
-    toast('✅ Servicio guardado', 'success');
+    if (id) {
+      const { error } = await sb.from('services').update(row).eq('id', id);
+      if (error) throw error;
+      toast('✅ Servicio guardado', 'success');
+      // Keep modal open so user can manage images
+      document.getElementById('ms-images-section').style.display = 'block';
+      await loadServices();
+    } else {
+      const { data, error } = await sb.from('services').insert(row).select().single();
+      if (error) throw error;
+      document.getElementById('ms-id').value = data.id;
+      document.getElementById('ms-images-section').style.display = 'block';
+      document.getElementById('modal-service-title').textContent = 'Editar Servicio';
+      await loadServices();
+      toast('✅ Servicio creado — ahora podés agregar fotos', 'success');
+    }
   } catch (e) { toast('❌ Error: ' + e.message, 'error'); }
 }
 
 async function deleteService(id) {
-  if (!confirm('¿Eliminás este servicio?')) return;
+  if (!confirm('¿Eliminás este servicio y todas sus fotos?')) return;
   const { error } = await sb.from('services').delete().eq('id', id);
   if (error) { toast('❌ Error al eliminar', 'error'); return; }
   await loadServices();
